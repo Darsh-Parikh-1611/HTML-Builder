@@ -163,14 +163,14 @@ open_files = []
 #------------------------------------------------------------------------------
 def imagePath(file_path:str) -> str:
     '''`file_path` is relative the user input `img_path`'''
-    global __rulefile_path, seperator, Config
+    global __rulefile_path, Config
     i = 1
     for c in __rulefile_path:
         if (c == Config.seperator): i += 1
     route = ''
     for _ in range(i-1):
         route += "../"
-    return (route + Config.img_path + file_path)
+    return (route + Config.img_path.replace(Config.seperator, '/') + file_path)
 #------------------------------------------------------------------------------
 def openRuleFile(rule_path:str):
     '''`rule_path` is relative to the user input `rules_path`'''

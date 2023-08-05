@@ -80,22 +80,21 @@ def constructFolder(dir_objs, output_folder:str):
             constructFolder(os.scandir(obj.path), output_folder=output_folder)
 #------------------------------------------------------------------------------
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
-if __name__ == "__main__":
-    if len(sys.argv) == 5:
-        result_path = sys.argv[1]
-        rules_path  = sys.argv[2]
-        templ_path  = sys.argv[3]
-        img_path    = sys.argv[4]
-    else:
-        print("Error : Invalid Program Usage")
-        documentation.showUsage()
-        exit(-1)     
+if len(sys.argv) == 5:
+    Config.result_path = sys.argv[1]
+    Config.rules_path  = sys.argv[2]
+    Config.templ_path  = sys.argv[3]
+    Config.img_path    = sys.argv[4]
+else:
+    print("Error : Invalid Program Usage")
+    documentation.showUsage()
+    exit(-1)
 
-    try:
-        rules = os.scandir(rules_path)
-        os.scandir(templ_path)
-        os.scandir(img_path)
-    except OSError:
-        print(f"Error : Folders specificed cannot be found")
-    else:
-        constructFolder(rules, result_path)
+try:
+    rules = os.scandir(Config.rules_path)
+    os.scandir(Config.templ_path)
+    os.scandir(Config.img_path)
+except OSError as e:
+    print(str(e))
+else:
+    constructFolder(rules, Config.result_path)

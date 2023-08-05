@@ -1,15 +1,16 @@
 import platform
 import re
 ###############################################################################
-result_path = ''
-rules_path  = ''
-templ_path  = ''
-img_path    = ''
-
-if platform.system() == 'Windows':
-    seperator = '\\'
-else:
-    seperator = '/'
+class Configuration:
+    def __init__(self):
+        self.result_path = ''
+        self.rules_path  = ''
+        self.templ_path  = ''
+        self.img_path    = ''
+        if platform.system() == 'Windows':
+            self.seperator = '\\'
+        else:
+            self.seperator = '/'
 ###############################################################################
 __tab_depth = 0
 
@@ -41,3 +42,5 @@ def find(iteratable, string : str) -> bool :
                 return True
         except StopIteration:
             return False    # reached end of iterator
+#------------------------------------------------------------------------------
+Config = Configuration()

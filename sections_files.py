@@ -163,27 +163,27 @@ open_files = []
 #------------------------------------------------------------------------------
 def imagePath(file_path:str) -> str:
     '''`file_path` is relative the user input `img_path`'''
-    global __rulefile_path, seperator
+    global __rulefile_path, seperator, Config
     i = 1
     for c in __rulefile_path:
-        if (c == seperator): i += 1
+        if (c == Config.seperator): i += 1
     route = ''
     for _ in range(i-1):
         route += "../"
-    return (route + img_path + file_path)
+    return (route + Config.img_path + file_path)
 #------------------------------------------------------------------------------
 def openRuleFile(rule_path:str):
     '''`rule_path` is relative to the user input `rules_path`'''
-    global __rule_name, __rulefile_path, open_files
-    __rulefile_path, __rule_name = rule_path.rsplit(seperator, 1)
+    global __rule_name, __rulefile_path, open_files, Config
+    __rulefile_path, __rule_name = rule_path.rsplit(Config.seperator, 1)
     __rule_name, extension = __rule_name.rsplit('.', 1)
     open_files.append(open(rule_path,'r'))
     return open_files[-1], extractRuleSections(open_files[-1])
 #------------------------------------------------------------------------------
 def openTemplateFile(file_path:str):
     '''`file_path` is relative to the user input `templ_path`'''
-    global open_files
-    open_files.append(open(templ_path+file_path,'r'))
+    global open_files, Config
+    open_files.append(open(Config.templ_path+file_path,'r'))
     return open_files[-1], extractTemplateSections(open_files[-1])
 #------------------------------------------------------------------------------
 def openContentFile(cont_path:str):

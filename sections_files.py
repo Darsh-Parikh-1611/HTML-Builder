@@ -168,7 +168,7 @@ def imagePath(file_path:str) -> str:
     for c in __rulefile_path:
         if (c == Config.seperator): i += 1
     route = ''
-    for _ in range(i-1):
+    for _ in range(i-2):
         route += "../"
     return (route + Config.img_path.replace(Config.seperator, '/') + file_path)
 #------------------------------------------------------------------------------

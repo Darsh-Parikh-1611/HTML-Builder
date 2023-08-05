@@ -97,4 +97,5 @@ try:
 except OSError as e:
     print(str(e))
 else:
+    Config.img_path = Config.img_path[0] + Config.img_path[6:]
     constructFolder(rules, Config.result_path)
